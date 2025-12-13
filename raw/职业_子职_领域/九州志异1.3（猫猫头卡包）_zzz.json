@@ -998,87 +998,39 @@
     "描述": "当你需要标记生命点或护甲槽时，你可以改为在此卡牌上放置等量指示物。当你长休时，移除此卡牌的所有指示物。\n此卡牌的指示物放置上限等同于你宝库中的阵法卡数量。"
   },
   {
-    "id": "九州志异-青城-vari-mhtyjet2-flfivn",
     "名称": "北冥神功",
     "类型": "绝学",
     "效果": "近战攻击命中时，你可以令目标标记1压力点，同时你清除1压力点；若你没有可清除的压力点，则改为获得1希望点。",
-    "子类别": "",
-    "简略信息": {
-      "item1": "奇遇",
-      "item2": "绝学",
-      "item3": "粗通",
-      "item4": ""
-    },
-    "imageUrl": "https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEGSVFpEp2PjczKjwS2ijqBaRnKIya2mgACsUcAAlOumFTK5a1o-v-ITTYE.png"
+    "简略信息": "奇遇/绝学/粗通"
   },
   {
-    "id": "九州志异-青城-vari-mhtylzhw-30eyhj",
     "名称": "北冥神功",
     "类型": "绝学",
     "效果": "近战攻击命中时，你可以令目标失去1压力槽上限，同时你获得1压力槽上限；若你已有12点压力槽，则改为获得1希望点。\n\n长休时，你失去以此法获得的压力槽，每失去1点，便可以为你或者一名盟友清除1压力点。",
-    "子类别": "",
-    "简略信息": {
-      "item1": "奇遇",
-      "item2": "绝学",
-      "item3": "真意",
-      "item4": ""
-    },
-    "imageUrl": "https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEGSVFpEp2PjczKjwS2ijqBaRnKIya2mgACsUcAAlOumFTK5a1o-v-ITTYE.png"
+    "简略信息": "奇遇/绝学/真意"
   },
   {
-    "id": "九州志异-青城-vari-mhtymokx-sc5uqm",
     "名称": "独孤九剑",
     "类型": "绝学",
     "效果": "当你聚焦时，可以邀请GM花费1恐惧点激活一名敌人攻击你，你同时进行攻击掷骰：若你命中敌人，则敌人的攻击视为被反制，且你正常进行伤害掷骰；然后你未命中的敌人正常结算攻击结果。",
-    "子类别": "",
-    "简略信息": {
-      "item1": "奇遇",
-      "item2": "绝学",
-      "item3": "粗通",
-      "item4": ""
-    },
-    "imageUrl": "https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEGSUZpEp2FTfw6LO1doX2VtQ0QkQGuZQACpkcAAlOumFQqt3qltPpKmzYE.png"
+    "简略信息": "奇遇/绝学/粗通"
   },
   {
-    "id": "九州志异-青城-vari-mhtynogj-kp50gb",
     "名称": "独孤九剑",
     "类型": "绝学",
     "效果": "当你聚焦时，可以邀请GM花费至多你位阶的恐惧点激活等量敌人攻击你，你同时进行攻击掷骰：每一名被你命中的敌人，攻击均视为被反制，且你正常进行伤害掷骰；然后你未命中的敌人正常结算攻击结果。\n\n如果GM没有回应你的邀请，你获得1希望点。",
-    "子类别": "",
-    "简略信息": {
-      "item1": "奇遇",
-      "item2": "绝学",
-      "item3": "真意",
-      "item4": ""
-    },
-    "imageUrl": "https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEGSUZpEp2FTfw6LO1doX2VtQ0QkQGuZQACpkcAAlOumFQqt3qltPpKmzYE.png"
+    "简略信息": "奇遇/绝学/真意"
   },
   {
-    "id": "九州志异-青城-vari-mhtyo6ym-dcx8dr",
     "名称": "葵花宝典",
     "类型": "绝学",
     "效果": "此功需欲念之人受外力根除欲念方可修炼。\n\n每休整限一次，当你行动掷骰结束后，你可以立刻进行一次聚焦，并直接使用上一次的行动掷骰结果作为掷骰结果。",
-    "子类别": "",
-    "简略信息": {
-      "item1": "奇遇",
-      "item2": "绝学",
-      "item3": "粗通",
-      "item4": ""
-    },
-    "imageUrl": "https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEGSYRpEp4_OvZvzCzFL3jhzrC0MznxmAAC7EcAAlOumFT7I5TNS-3SJjYE.png"
+    "简略信息": "奇遇/绝学/粗通"
   },
   {
-    "id": "九州志异-青城-vari-mhtyp0ni-yil2d6",
     "名称": "葵花宝典",
     "类型": "绝学",
     "效果": "此功需欲念之人受外力根除欲念方可修炼。\n\n当你或者盟友行动掷骰结束后，你可以立刻标记2生命点进行一次聚焦，并直接使用上一次的行动掷骰结果作为掷骰结果；此功标记的生命点有可能使你进行死亡行动。\n\n如果你死亡行动选择荣光就义，你可以进行两次关键成功的行动，然后再死亡。",
-    "子类别": "",
-    "简略信息": {
-      "item1": "奇遇",
-      "item2": "绝学",
-      "item3": "真意",
-      "item4": ""
-    },
-    "imageUrl": "https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEGSYRpEp4_OvZvzCzFL3jhzrC0MznxmAAC7EcAAlOumFT7I5TNS-3SJjYE.png"
+    "简略信息": "奇遇/绝学/真意"
   }
 ]

@@ -167,7 +167,16 @@ def work_rrr(data: List[Any]) -> Any:
                         dict_in["回想"] = str(d.get("回想", ""))
                         dict_in["描述"] = d.get("描述", "")
                     elif key == "variant":
-                        dict_in = d
+                        d.pop("id", None)
+                        d.pop("imageUrl", None)
+                        attr = ""
+                        for k,v in d.get("简略信息", "").items():
+                            if v:
+                                attr = attr + f"{v}/"
+                        d["简略信息"] = attr[:-1] if attr else ""
+                        for k,v in d.items():
+                            if v:
+                                dict_in[k] = v
                     dict_out.append(dict_in)
 
     for _,r in race_dict.items():
