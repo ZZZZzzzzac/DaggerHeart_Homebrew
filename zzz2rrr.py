@@ -21,6 +21,8 @@ import json
 import os
 import sys
 import zipfile
+import datetime
+import uuid
 from typing import Union, List, Dict, Any
 
 
@@ -102,8 +104,125 @@ def collect_data(input_path: str) -> List[Any]:
         raise FileNotFoundError(f"输入路径不存在: {input_path}")
     return all_data
 
-def work_zzz(data: List[Any]) -> Any:
-    return data
+def gen_uuid() -> int:
+    """生成唯一ID（使用UUID v4）。"""
+    return str(uuid.uuid4().int) # pyright: ignore[reportReturnType]
+
+def work_zzz(data: List[Any], input_path: str = "") -> Any:
+    """
+    将zzz格式转换为rrr格式。
+    使用输入文件名作为包名称，当前日期时间作为版本。
+    """
+    # 从输入路径派生包名称（不带扩展名和路径）
+    if input_path:
+        name = os.path.splitext(os.path.basename(input_path))[0]
+    else:
+        name = "扩展包"
+    # 版本使用当前日期时间，格式如 YYYYMMDD_HHMMSS
+    version = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # 初始化结果结构
+    dict_out = {
+        "name": name,
+        "version": version,
+        "description": "",
+        "author": "",
+        "customFieldDefinitions": {
+            "professions": [],
+            "ancestries": [],
+            "communities": [],
+            "domains": [],
+            "variants": []
+        },
+        "profession": [],
+        "ancestry": [],
+        "community": [],
+        "subclass": [],
+        "domain": [],
+        "variant": []
+    }
+    for d in data:
+        type_ = d.get("类型", "")
+        name_ = d.get("名称", "")
+        dict_in = {}
+        dict_in["id"] = gen_uuid()
+        dict_in["名称"] = name_
+        if type_ == "主职":
+            if name_ not in dict_out["customFieldDefinitions"]["professions"]:
+                dict_out["customFieldDefinitions"]["professions"].append(name_)
+            domain = d.get("领域", "").replace("&", "+").replace("和", "+").replace("，", "+").replace(",", "+").replace(" ","").replace("&", "+")
+            domain_parts = domain.split("+")
+            dict_in["领域1"] = domain_parts[0] if len(domain_parts) > 0 else ""
+            dict_in["领域2"] = domain_parts[1] if len(domain_parts) > 1 else ""
+            dict_in["起始生命"] = d.get("初始生命点", "")
+            dict_in["起始闪避"] = d.get("初始闪避值", "")
+            dict_in["起始物品"] = d.get("初始物品", "")
+            dict_in["简介"] = d.get("简介", "N/A")
+            dict_in["希望特性"] = d.get("希望特性", "")
+            dict_in["职业特性"] = d.get("职业特性", "")
+            dict_in["imageUrl"] = ""
+            dict_out["profession"].append(dict_in)
+        elif type_ == "种族":
+            if name_ not in dict_out["customFieldDefinitions"]["ancestries"]:
+                dict_out["customFieldDefinitions"]["ancestries"].append(name_)
+            features = d.get("描述", "").replace(":", "：").replace("\n\n", "\n").split("\n")
+            feature = features[0].split("：")
+            dict_in["名称"] = feature[0]
+            dict_in["种族"] = name_
+            dict_in["简介"] = d.get("简介", "N/A")
+            dict_in["效果"] = feature[1]
+            dict_in["类别"] = 1
+            dict_in["imageUrl"] = ""
+            dict_out["ancestry"].append(dict_in)
+
+            dict_in = {}
+            feature = features[1].split("：")
+            dict_in["id"] = gen_uuid()
+            dict_in["名称"] = feature[0]
+            dict_in["种族"] = name_
+            dict_in["简介"] = d.get("简介", "N/A")
+            dict_in["效果"] = feature[1]
+            dict_in["类别"] = 2
+            dict_in["imageUrl"] = ""
+            dict_out["ancestry"].append(dict_in)
+        elif type_ == "社群":
+            if name_ not in dict_out["customFieldDefinitions"]["communities"]:
+                dict_out["customFieldDefinitions"]["communities"].append(name_)
+            feature = d.get("描述", "")
+            f_name, f_desc = feature.split("：", 1) if "：" in feature else (feature, "")
+            dict_in["特性"] = f_name
+            dict_in["简介"] = d.get("简介", "N/A")
+            dict_in["描述"] = f_desc
+            dict_in["imageUrl"] = ""
+            dict_out["community"].append(dict_in)
+        elif type_ == "子职":
+            dict_in["描述"] = d.get("描述", "")
+            dict_in["主职"] = d.get("主职", "")
+            dict_in["子职业"] = name_.split("-")[0] if "-" in name_ else name_
+            dict_in["等级"] = d.get("等级", "")
+            dict_in["施法"] = d.get("施法属性", "")
+            dict_in["imageUrl"] = ""
+            dict_out["subclass"].append(dict_in)
+        elif type_ == "领域卡":
+            domain = d.get("领域", "")
+            if domain not in dict_out["customFieldDefinitions"]["domains"]:
+                dict_out["customFieldDefinitions"]["domains"].append(domain)
+            dict_in["领域"] = domain
+            dict_in["等级"] = d.get("等级", "")
+            dict_in["属性"] = d.get("属性", "")
+            dict_in["回想"] = d.get("回想", "")
+            dict_in["描述"] = d.get("描述", "")
+            dict_in["imageUrl"] = ""
+            dict_out["domain"].append(dict_in)
+        else:
+            if type_ not in dict_out["customFieldDefinitions"]["variants"]:
+                dict_out["customFieldDefinitions"]["variants"].append(type_)
+            info = d.get("简略信息", "")
+            attr_parts = info.split("/") if info else []
+            d["简略信息"] = {f"item{i}": attr_parts[i] for i in range(len(attr_parts))}
+            dict_in.update(d)
+            dict_out["variant"].append(dict_in)            
+    return dict_out
 
 def work_rrr(data: List[Any]) -> Any:
     dict_out = []
@@ -125,8 +244,8 @@ def work_rrr(data: List[Any]) -> Any:
                         dict_in["初始生命点"] = d.get("起始生命", "")
                         dict_in["希望特性"] = d.get("希望特性", "")
                         dict_in["职业特性"] = d.get("职业特性", "")
-                        dict_in["背景问题"] = ""
-                        dict_in["关系问题"] = d.get("关系问题", "")
+                        dict_in["背景问题"] = d.get("背景问题", [])
+                        dict_in["关系问题"] = d.get("关系问题", [])
                         dict_in["简介"] = d.get("简介", "")
                     elif key == "ancestry":
                         race_name = d.get("种族", "")
