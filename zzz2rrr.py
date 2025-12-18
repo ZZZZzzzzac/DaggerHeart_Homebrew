@@ -199,8 +199,9 @@ def work_zzz(data: List[Any], input_path: str = "") -> Any:
             dict_in["描述"] = d.get("描述", "")
             dict_in["主职"] = d.get("主职", "")
             dict_in["子职业"] = name_.split("-")[0] if "-" in name_ else name_
-            dict_in["等级"] = d.get("等级", "")
-            dict_in["施法"] = d.get("施法属性", "")
+            dict_in["等级"] = d.get("等级", "").replace("基础","基石").replace("进阶","专精").replace("精通","大师")
+            cast = d.get("施法属性", "")
+            dict_in["施法"] = cast if cast else "不可施法"
             dict_in["imageUrl"] = ""
             dict_out["subclass"].append(dict_in)
         elif type_ == "领域卡":
@@ -219,6 +220,8 @@ def work_zzz(data: List[Any], input_path: str = "") -> Any:
                 dict_out["customFieldDefinitions"]["variants"].append(type_)
             info = d.get("简略信息", "")
             attr_parts = info.split("/") if info else []
+            feat = d.get("特性", "")
+            d["效果"] = feat
             d["简略信息"] = {f"item{i}": attr_parts[i] for i in range(len(attr_parts))}
             dict_in.update(d)
             dict_out["variant"].append(dict_in)            
@@ -303,7 +306,7 @@ def work_rrr(data: List[Any]) -> Any:
 
     return dict_out
 
-def work_function(data: List[Any], mode: str) -> Any:
+def work_function(data: List[Any], mode: str, filepath: str = "") -> Any:
     """
     工作函数 - 用户应自定义此函数。
     默认实现仅打印数据大小和模式，并返回原数据。
@@ -312,7 +315,7 @@ def work_function(data: List[Any], mode: str) -> Any:
     if mode == 'rrr':
         return work_rrr(data)
     elif mode == 'zzz':
-        return work_zzz(data)
+        return work_zzz(data, filepath)
     raise ValueError(f"未知模式: {mode}")
 
 def main():
@@ -343,7 +346,7 @@ def main():
 
 
     data = collect_data(args.input)
-    result = work_function(data, mode)
+    result = work_function(data, mode, args.input)
     json_output_path = os.path.splitext(args.input)[0] + f"_{to_mode}.json"
     with open(json_output_path, 'w', encoding='utf-8') as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
