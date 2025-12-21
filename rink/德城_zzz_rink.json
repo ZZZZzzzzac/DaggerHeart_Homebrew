@@ -1,0 +1,188 @@
+[
+  {
+    "name": "任怨任勞的牛马——枯萎干尸",
+    "rank": "2",
+    "type": "集群",
+    "description": "一群穿着格子衬衫，双眼无神，已经被工作榨干了所有精力的干尸。",
+    "motivation": "偷懒摸鱼，带着怨气服从命令",
+    "difficulty": "13",
+    "threshold": "12/18",
+    "health": "6",
+    "stress": "3",
+    "attackBonus": "0",
+    "weaponName": "",
+    "weaponRange": "",
+    "damageDice": "2d6+4",
+    "damageType": "",
+    "decoratorColor": "#8a1c1c",
+    "highlightBgColor": "#852020",
+    "highlightTextColor": "#ffffff",
+    "isNPC": false,
+    "imageSrc": "about:blank",
+    "imageTransform": "",
+    "imageSettings": {
+      "width": "150",
+      "height": "150",
+      "shape": "circle",
+      "hideBorder": false
+    },
+    "experiences": [
+      "牛马+2"
+    ],
+    "traits": [
+      {
+        "name": "老实人之怒",
+        "desc": "被动：当牛马标记了其生命点的一半或更多时，其普通攻击改为造成 2d12+8 魔法伤害。",
+        "flavor": ""
+      },
+      {
+        "name": "摸鱼",
+        "desc": "被动：聚焦牛马时，若未标记生命点的一半或更多，或周围没有上级时，将会选择摸鱼，恢复 1 生命点。",
+        "flavor": ""
+      }
+    ],
+    "specialTraits": []
+  },
+  {
+    "name": "只会AI的美工——亡灵法师",
+    "rank": "2",
+    "type": "远程",
+    "description": "各种不同风格尸块拼凑起的亡灵法师，兜帽之下是一片噪声。",
+    "motivation": "生成扭曲画作，模仿他人",
+    "difficulty": "13",
+    "threshold": "6/16",
+    "health": "4",
+    "stress": "2",
+    "attackBonus": "0",
+    "weaponName": "",
+    "weaponRange": "",
+    "damageDice": "0",
+    "damageType": "",
+    "decoratorColor": "#8a1c1c",
+    "highlightBgColor": "#852020",
+    "highlightTextColor": "#ffffff",
+    "isNPC": false,
+    "imageSrc": "about:blank",
+    "imageTransform": "",
+    "imageSettings": {
+      "width": "150",
+      "height": "150",
+      "shape": "circle",
+      "hideBorder": false
+    },
+    "experiences": [
+      "绘圈小画家+3"
+    ],
+    "traits": [
+      {
+        "name": "抽卡失败",
+        "desc": "被动：攻击污染等级为X的目标时，攻击命中增加2X，造成 Xd10 点魔法伤害。",
+        "flavor": ""
+      },
+      {
+        "name": "画风融合",
+        "desc": "反应：当玩家使用某种强力的能力时，可以**花费 1 恐惧点**，复刻出相似但扭曲的版本。",
+        "flavor": ""
+      }
+    ],
+    "specialTraits": []
+  },
+  {
+    "name": "错误堆积的结果——BUG",
+    "rank": "2",
+    "type": "独狼",
+    "description": "它的六只脚是昆虫的几丁质外壳，肚子是流线型的机械构造，翅膀由一段段代码写成。本该是脑袋的地方是花屏的图像，眼中则透露着编译器报错时闪亮的红光。",
+    "motivation": "无法预测，不分敌我",
+    "difficulty": "17",
+    "threshold": "16/28",
+    "health": "10",
+    "stress": "6",
+    "attackBonus": "6",
+    "weaponName": "",
+    "weaponRange": "",
+    "damageDice": "1d60",
+    "damageType": "",
+    "decoratorColor": "#8a1c1c",
+    "highlightBgColor": "#852020",
+    "highlightTextColor": "#ffffff",
+    "isNPC": false,
+    "imageSrc": "about:blank",
+    "imageTransform": "",
+    "imageSettings": {
+      "width": "150",
+      "height": "150",
+      "shape": "circle",
+      "hideBorder": false
+    },
+    "experiences": [
+      "致命错误+3"
+    ],
+    "traits": [
+      {
+        "name": "堆栈溢出",
+        "desc": "被动：在GM回合中不限聚焦次数，但一旦攻击失败便结束GM回合。",
+        "flavor": ""
+      },
+      {
+        "name": "死循环",
+        "desc": "动作：**花费 1 恐惧点**，将一名玩家困入死循环，无法对外界产生影响。其本人或队友需找到叙事上可行的办法尝试自救或解救，并进行动作掷骰（15），失败时需付出一定代价才能打破循环。",
+        "flavor": ""
+      },
+      {
+        "name": "环境兼容",
+        "desc": "动作：**花费 1 恐惧点**，选择一名玩家，切换其世界线，并增加其1级污染：\n- 德城：描述其如何与bug战斗，反应掷骰（15），失败标记 2 生命点。\n- 现实：描述其如何进行debug，反应掷骰（15），失败标记 2 压力点。",
+        "flavor": ""
+      },
+      {
+        "name": "指针为空",
+        "desc": "反应：对其攻击未能造成伤害时，该攻击会命中其他随机一名目标。",
+        "flavor": ""
+      }
+    ],
+    "specialTraits": []
+  },
+  {
+    "name": "接下商单的主播——反噬女妖",
+    "rank": "2",
+    "type": "斗士",
+    "description": "昧着良心恰米，直播当中塌房。",
+    "motivation": "增加人气，收割粉丝，抹黑对家",
+    "difficulty": "生命点x2",
+    "threshold": "10/22",
+    "health": "8",
+    "stress": "6",
+    "attackBonus": "3",
+    "weaponName": "",
+    "weaponRange": "",
+    "damageDice": "2d8+8",
+    "damageType": "",
+    "decoratorColor": "#8a1c1c",
+    "highlightBgColor": "#852020",
+    "highlightTextColor": "#ffffff",
+    "isNPC": false,
+    "imageSrc": "about:blank",
+    "imageTransform": "",
+    "imageSettings": {
+      "width": "150",
+      "height": "150",
+      "shape": "circle",
+      "hideBorder": false
+    },
+    "experiences": [
+      "擦边主播+3"
+    ],
+    "traits": [
+      {
+        "name": "炎上",
+        "desc": "动作：**花费 1 恐惧点**，鼓动自己的粉丝网暴远距离内的一个目标，需过风度反应掷骰（12+生命点差）。失败时，造成 “女妖目前生命点”d8 的魔法伤害，成功时，标记 1 压力点。",
+        "flavor": ""
+      },
+      {
+        "name": "结晶粉",
+        "desc": "反应：当其需要标记生命点时，可用等量压力点代替。玩家可以用反应掷骰（12+生命点差）来打断，成功时将使得女妖白白浪费压力点。",
+        "flavor": ""
+      }
+    ],
+    "specialTraits": []
+  }
+]
