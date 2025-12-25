@@ -154,9 +154,9 @@ def work_zzz(data: List[Any], input_path: str = "") -> Any:
             domain_parts = domain.split("+")
             dict_in["领域1"] = domain_parts[0] if len(domain_parts) > 0 else ""
             dict_in["领域2"] = domain_parts[1] if len(domain_parts) > 1 else ""
-            dict_in["起始生命"] = d.get("初始生命点", "")
-            dict_in["起始闪避"] = d.get("初始闪避值", "")
-            dict_in["起始物品"] = d.get("初始物品", "")
+            dict_in["起始生命"] = int(d.get("初始生命点", ""))
+            dict_in["起始闪避"] = int(d.get("初始闪避值", ""))
+            dict_in["起始物品"] = d.get("初始物品", " ")
             dict_in["简介"] = d.get("简介", "N/A")
             dict_in["希望特性"] = d.get("希望特性", "")
             dict_in["职业特性"] = d.get("职业特性", "")
@@ -209,9 +209,10 @@ def work_zzz(data: List[Any], input_path: str = "") -> Any:
             if domain not in dict_out["customFieldDefinitions"]["domains"]:
                 dict_out["customFieldDefinitions"]["domains"].append(domain)
             dict_in["领域"] = domain
-            dict_in["等级"] = d.get("等级", "")
+            dict_in["等级"] = int(d.get("等级", ""))
             dict_in["属性"] = d.get("属性", "")
-            dict_in["回想"] = d.get("回想", "")
+            recall = d.get("回想", "")
+            dict_in["回想"] = int(recall) if recall.isdigit() else recall
             dict_in["描述"] = d.get("描述", "")
             dict_in["imageUrl"] = ""
             dict_out["domain"].append(dict_in)
