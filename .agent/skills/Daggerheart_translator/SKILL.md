@@ -1,4 +1,5 @@
 ---
+name: Daggerheart Translator
 description: Translate Daggerheart game rulebooks from English to Chinese, focusing purely on translation quality and term accuracy.
 ---
 
@@ -38,15 +39,16 @@ To understand the tone, style, and how translations should map to the original s
    - **Correct**: 独狼敌人
    - **Incorrect**: 【重度伤害 (major)】的【社交 (Social)】 【敌人 (adversaries)】
    - **Correct**: 重要的社交敌人  *(Note: Context matters, "major" here meant "important", not "major damage").*
-   - **EXCEPTION**: For the names of adversary **Features (特性)**, you **MUST** retain the English original name in parentheses after the translated name.
+   - **EXCEPTION**: For the names of adversary and their **Features (特性)**, you **MUST** retain the English original name in parentheses after the translated name.
    - Example Feature Translation: `*Tag and Tail - 【动作 (Action)】:*` -> `*标记与尾随 (Tag and Tail) - 动作:*`
    - Only use English in parentheses for extremely specific proper nouns or Feature names. For 99% of mechanic terms, traits, or generic words, strip the English completely.
    - Example output generation: "Make a 【风度掷骰 (Presence Roll)】 against them." -> "对其进行一次风度掷骰。"
    - Explicitly translate 'a/an' to clarify the number of actions, e.g. "Make an attack against a target within Far range." -> "对远距离范围内的一个目标发动一次攻击。"
    - If "They" is used as a non-binary pronoun, translate it as "其" in Chinese. If "They" is used as a plural pronoun, translate it as "他们" in Chinese.
+   - **ANTI-TRUNCATION (CRITICAL)**: When translating long documents, you MUST NOT skip any sections, headings, or entries. If the output risks hitting token limits, translate in explicit, sequential chunks. Always double-check that every single item, enemy, or environment from the source text is accounted for in the final output. Never silently drop content.
 
 ## Formatting Rules
 - **Maintain Original Structure:** If the input is a JSON snippet with `"original"` and `"translation"` keys, output the same JSON snippet structure. If the input is raw markdown, output raw markdown. 
 - **Cost Formatting**: Bold action costs clearly (e.g.,`[spend|clear|mark|gain|lose] [X|equal|X or fewer|X or more] [HP|Stress|Hope|Fear|Armor Slot]` -> `**[花费|清除|标记|获得|失去] [X|等量|至多X|至少X] [生命点|压力点|希望点|恐惧点|护甲槽]**`). This is a standard Daggerheart convention.
-- **Conditions**: Italicize temporary conditions, add space around it (e.g., ` *脆弱* `, ` *点燃* `, ` *束缚* `).
+- **Conditions**: Italicize temporary conditions, add space around it (e.g., ` *脆弱* `, ` *点燃* `, ` *束缚* `). When translating "become *condition*", unify the terminology to use "处于 *状态*" instead of "陷入 *状态*" or "进入 *状态*". Example: "become *Vulnerable*" -> "处于 *脆弱* 状态".
 - **Tone**: The wording should be thematic, sounding like an official, clear tabletop RPG rulebook. Lore descriptions should be flavorful, and mechanical descriptions must be totally unambiguous.

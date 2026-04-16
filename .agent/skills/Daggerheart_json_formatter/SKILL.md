@@ -1,4 +1,5 @@
 ---
+name: Daggerheart JSON Formatter
 description: Identify the type of a translated Daggerheart text and format it into JSON according to template.md.
 ---
 

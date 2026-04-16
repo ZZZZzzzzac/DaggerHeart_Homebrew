@@ -53,11 +53,12 @@ def replace_terms(text, terms_file_path):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python replace_terms.py <text_to_process> <path_to_terms_json>")
+        print("Usage: python replace_terms.py <text_to_process> <path_to_terms_json> [output_path]")
         sys.exit(1)
 
     input_text = sys.argv[1]
     terms_path = sys.argv[2]
+    output_path = sys.argv[3] if len(sys.argv) > 3 else None
     
     # If the text is a file path, read from it, otherwise treat as raw text
     if os.path.exists(input_text):
@@ -65,4 +66,10 @@ if __name__ == "__main__":
             input_text = f.read()
 
     result = replace_terms(input_text, terms_path)
-    print(result)
+    
+    if output_path:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(result)
+    else:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stdout.write(result + '\n')
