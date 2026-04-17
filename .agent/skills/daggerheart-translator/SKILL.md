@@ -1,5 +1,5 @@
 ---
-name: Daggerheart Translator
+name: daggerheart-translator
 description: Translate Daggerheart game rulebooks from English to Chinese, focusing purely on translation quality and term accuracy.
 ---
 
@@ -46,6 +46,32 @@ To understand the tone, style, and how translations should map to the original s
    - Explicitly translate 'a/an' to clarify the number of actions, e.g. "Make an attack against a target within Far range." -> "对远距离范围内的一个目标发动一次攻击。"
    - If "They" is used as a non-binary pronoun, translate it as "其" in Chinese. If "They" is used as a plural pronoun, translate it as "他们" in Chinese.
    - **ANTI-TRUNCATION (CRITICAL)**: When translating long documents, you MUST NOT skip any sections, headings, or entries. If the output risks hitting token limits, translate in explicit, sequential chunks. Always double-check that every single item, enemy, or environment from the source text is accounted for in the final output. Never silently drop content.
+
+   ## 长文本分块策略
+
+   当输入文本很长，或者明显包含多张卡、多节规则、附图说明、表格与注释时，不要尝试单轮翻译整篇内容。必须按下面方式处理：
+
+   1. 先按一级标题、卡片边界、编号段落或表格块切分。
+   2. 每个块单独翻译，保持块内的标题层级、编号、列表、表格顺序不变。
+   3. 如果某个块内部仍然过长，再继续按更小的语义单元切分，但不要打断项目符号、表格行或特性条目。
+   4. 先完成全部块的翻译，再按原始顺序重组。
+   5. 重组时必须保留跨块一致的术语、专有名词和编号，不要因为分块而改写逻辑顺序。
+
+   ## 翻译后处理
+
+   完成翻译后，必须调用 `../scripts/makeup.py` 对译文 markdown 做一次规范化处理。这个脚本用于清理图片占位、空 span、资源短语、斜体空格、链接和 PC/GM 术语替换。它不是翻译替代品，而是翻译后的固定收尾步骤。
+
+   示例调用：
+
+   ```bash
+   python ../scripts/makeup.py "输入译文.md"
+   ```
+
+   如果输入的是文件路径，就先翻译成对应的中间 markdown，再对中间文件运行该脚本。
+
+   ## 扩展范围
+
+   当前默认重点仍然是敌人、环境、领域卡、职业与子职等结构化卡牌文本，但这个 skill 需要保留扩展接口，以便后续加入规则书、背景设定、道具、玩法说明和其他非卡牌内容。对这些新内容的基本原则是：保持原始结构，忠实翻译，不强行套用卡牌术语或 JSON 模板。
 
 ## Formatting Rules
 - **Maintain Original Structure:** If the input is a JSON snippet with `"original"` and `"translation"` keys, output the same JSON snippet structure. If the input is raw markdown, output raw markdown. 
